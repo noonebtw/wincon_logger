@@ -48,7 +48,11 @@ impl log::Log for ConsoleLogger {
                 };
 
                 let location = if let (Some(file_path), Some(line)) = (record.file(), record.line()) {
-                    format!("{}:{}", file_path, line)
+                    if record.target().is_empty() {
+                        format!("{}::{}:{}", record.target(), file_path, line)
+                    } else {
+                        format!("{}::{}:{}", record.module_path().unwrap_or_default(), file_path, line)
+                    }
                 }
                 else {
                     record.module_path().unwrap_or_default().to_owned()
