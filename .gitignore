@@ -1,2 +1,6 @@
 /target
 Cargo.lock
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/wincon_logger.iml
+/.idea/.gitignore
